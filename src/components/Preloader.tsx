@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const Preloader = ({ onComplete }: { onComplete: () => void }) => {
   const [progress, setProgress] = useState(0);
@@ -7,7 +8,7 @@ const Preloader = ({ onComplete }: { onComplete: () => void }) => {
   const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
-    let timer = setInterval(() => {
+    const timer = setInterval(() => {
       setProgress((prev) => (prev < 100 ? prev + 5 : 100));
     }, 80); // Smooth progress increase
 
@@ -48,7 +49,7 @@ const Preloader = ({ onComplete }: { onComplete: () => void }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <img src="/logo.png" alt="Zavior Logo" className="w-24 h-24" />
+              <Image width={100} height={100} src="/logo.png" alt="Zavior Logo"  />
             </motion.div>
 
             {/* "100%" Moves Up One by One */}
