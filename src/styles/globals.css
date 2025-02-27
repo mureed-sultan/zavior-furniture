@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+a {
+  text-decoration: none !important ;
+}
+
+.cursor1 {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--primary);
+  border-radius: 50%;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: 0.15s;
+  z-index: 999;
+}
+@media (max-width: 1200px) {
+  .cursor1 {
+    display: none;
+  }
+}
+
+.cursor2 {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: 0.2s;
+  z-index: 999;
+}
+@media (max-width: 1200px) {
+  .cursor2 {
+    display: none;
+  }
+}
+
+
+
+.window-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: flex;
+  top: 0;
+  left: 0;
+}
+
+.left-panel, .right-panel {
+  width: 50%;
+  height: 100%;
+  background-color: black;
+}
+
+.progress-wrap {
+  width: 60px;
+  height: 60px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 50;
+}
+
+.progress-circle {
+  transform: rotate(-90deg);
+}
+
+/* Hide dropdowns initially */
+.menu-dropdown {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease-in-out;
+}
+.characters{
+  opacity: 0;
+}
+
+.group:hover .menu-dropdown {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Dropdown menus should be hidden by default */
+.group-hover .group-hover\:visible {
+  visibility: visible;
+}
+
+.group-hover .group-hover\:opacity-100 {
+  opacity: 1;
+}
+
+.modal-body input {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  outline: none;
+  font-size: 18px;
+}
+
+.modal-body button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
