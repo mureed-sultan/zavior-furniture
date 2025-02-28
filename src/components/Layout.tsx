@@ -9,6 +9,7 @@ import "../styles/globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Preloader from "./Preloader";
 import Cursor from "./Cursor";
+import { Analytics } from "@vercel/analytics/react"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -119,6 +120,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       {!showContent && <Preloader onComplete={() => setShowContent(true)} />}
       {showContent && (
         <>
+        <Analytics/>
           <Cursor />
           <div className="window-overlay fixed top-0 left-0 w-full h-full flex">
             <div className="left-panel w-1/2 h-full bg-black"></div>
