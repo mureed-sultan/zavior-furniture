@@ -67,7 +67,7 @@ const Header = () => {
     { title: "About", link: "/about" },
     {
       title: "Portfolio",
-      link: "#",
+      link: "/portfolio",
       subMenu: [
         { title: "Portfolio Carousel", link: "/portfolio-carousel.html" },
         { title: "Portfolio Material", link: "/portfolio-material.html" },

@@ -30,10 +30,15 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         onComplete: () => {
           setTimeout(() => {
             const overlay = document.querySelector(".window-overlay");
-            if (overlay && overlay.parentNode) {
-              overlay.parentNode.removeChild(overlay);
+            console.log("overlay" , overlay , overlay?.parentNode)
+            if (overlay ) {
+              const computedStyles = window.getComputedStyle(overlay);
+              
+              console.log((overlay as HTMLElement).style.zIndex="0"  )
+
+              // overlay.parentNode?.removeChild(overlay);
             }
-          }, 50); // Small delay to ensure it's available
+          }, 50); 
         },
         
       });
@@ -94,6 +99,20 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, [showContent]);
+  useEffect(() => {
+    const handleScroll = () => {
+      const header = document.querySelector("header");
+      if (window.scrollY > 100) {
+        header?.classList.add("sticky");
+      } else {
+        header?.classList.remove("sticky");
+      }
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+  
 
   return (
     <>
@@ -106,7 +125,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <div className="right-panel w-1/2 h-full bg-black"></div>
           </div>
           <Header />
-          <main>{children}</main>
+          <>{children}</>
           <Footer />
         </>
       )}

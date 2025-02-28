@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import '../styles/pages/main.css'
+import '../styles/pages/home.css'
 import Image from "next/image";
 import { Navigation } from "swiper/modules";
 import { motion } from "framer-motion";
@@ -147,10 +147,10 @@ const Home = () => {
   }, [swiperInstance]);
   return (
     <Layout>
-      <main className="body-wrapper body-web-agency">
+      <main className="body-wrapper body-web-agency font-heading-teko-bold">
         {/* Hero Section   */}
         <section className="hero-area">
-          <div className="container">
+          <div className="container large">
             <div className="hero-area-inner">
               <div className="area-shape-1">
                 <Image
@@ -385,7 +385,7 @@ const Home = () => {
                     slidesPerView={5} // Show multiple logos at once
                     loop={true}
                     autoplay={{
-                      delay: 0, // Removes delay for a smooth effect
+                      delay: 0,
                       disableOnInteraction: false,
                       pauseOnMouseEnter: false,
                     }}
