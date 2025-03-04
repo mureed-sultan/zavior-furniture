@@ -3,14 +3,15 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  FaBars,
-  FaChevronDown,
-  FaMoon,
-  FaSun,
-  FaTimes,
-} from "react-icons/fa";
+import { FaBars, FaChevronDown, FaMoon, FaSun, FaTimes } from "react-icons/fa";
 import SearchModal from "./SearchModal";
+
+type MenuItem = {
+  title: string;
+  link: string;
+  subMenu?: MenuItem[]; // subMenu is now optional
+};
+
 
 const Header = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -40,91 +41,36 @@ const Header = () => {
       [index]: !prev[index],
     }));
   };
-  const menuItems = [
+  const menuItems: MenuItem[] = [
     {
-      title: "Demos",
-      link: "#",
-      subMenu: [
-        { title: "Branding Agency", link: "/branding-agency.html" },
-        { title: "Web Agency", link: "/web-agency.html" },
-        { title: "SEO Agency", link: "/seo-agency.html" },
-        { title: "Design Agency", link: "/design-studio.html" },
-        { title: "Video Agency", link: "/video-production.html" },
-        { title: "AI Agency", link: "/ai-agency.html" },
-        {
-          title: "Creative Agency Classic",
-          link: "/creative-agency-classic.html",
-        },
-        { title: "Marketing Agency", link: "/marketing-agency.html" },
-        { title: "Corporate Agency", link: "/corporate-agency.html" },
-        { title: "Startup Agency", link: "/startup-agency.html" },
-        { title: "Modern Agency", link: "/modern-agency.html" },
-        { title: "Photography Agency", link: "/photography-studio.html" },
-        { title: "Creative Agency", link: "/creative-agency.html" },
-        { title: "Digital Agency", link: "/digital-agency.html" },
-      ],
-    },
-    { title: "About", link: "/about" },
-    {
-      title: "Portfolio",
-      link: "/portfolio",
-      subMenu: [
-        { title: "Portfolio Carousel", link: "/portfolio-carousel.html" },
-        { title: "Portfolio Material", link: "/portfolio-material.html" },
-        { title: "Portfolio Slicer", link: "/portfolio-slicer.html" },
-        { title: "Portfolio Spring", link: "/portfolio-spring.html" },
-      ],
+      title: "Home",
+      link: "/",
     },
     {
-      title: "Pages",
+      title: "Services",
+      link: "/services",
+      subMenu: [{ title: "Web Development", link: "/services/web-development" }],
+    },
+    {
+      title: "blank",
       link: "#",
       subMenu: [
         {
-          title: "Service Pages",
+          title: "blank",
           link: "#",
           subMenu: [
-            { title: "Services", link: "/services.html" },
-            { title: "Service Details", link: "/service-details.html" },
+            { title: "blank", link: "/services.html" },
+            { title: "blank", link: "/service-details.html" },
           ],
         },
-        {
-          title: "Project Pages",
-          link: "#",
-          subMenu: [
-            { title: "Project", link: "/works.html" },
-            { title: "Project Details", link: "/work-details.html" },
-          ],
-        },
-        {
-          title: "Team Pages",
-          link: "#",
-          subMenu: [
-            { title: "Team", link: "/team.html" },
-            { title: "Team Details", link: "/team-details.html" },
-          ],
-        },
-        {
-          title: "Career Pages",
-          link: "#",
-          subMenu: [
-            { title: "Career", link: "/career.html" },
-            { title: "Career Details", link: "/career-details.html" },
-          ],
-        },
-        { title: "FAQ", link: "/faq.html" },
-        { title: "404 Page", link: "/404.html" },
       ],
     },
-    {
-      title: "Blog",
-      link: "#",
-      subMenu: [
-        { title: "Blog", link: "/blog.html" },
-        { title: "Blog Details", link: "/blog-details.html" },
-      ],
-    },
-    { title: "Contact", link: "/contact.html" },
+    { title: "Portfolio", link: "/portfolio" },
+    { title: "About Us", link: "/about" },
+    { title: "Blog", link: "/blog" },
+    { title: "Contact", link: "/contact" },
   ];
+  
 
   return (
     <>
@@ -137,14 +83,14 @@ const Header = () => {
                   className="show-light"
                   src="/assets/imgs/logo.png"
                   alt="Site Logo"
-                  width={100}
+                  width={80}
                   height={50}
                 />
                 <Image
                   className="show-dark"
                   src="/assets/imgs/logo-dark.png"
                   alt="Site Logo"
-                  width={100}
+                  width={80}
                   height={50}
                 />
               </Link>
@@ -169,9 +115,7 @@ const Header = () => {
                           {menu.subMenu.map((submenu, subIndex) => (
                             <li
                               key={subIndex}
-                              className={
-                                submenu.subMenu ? "menu-item-has-children" : ""
-                              }
+                              className={submenu.subMenu ? "menu-item-has-children" : ""}
                             >
                               <Link
                                 className="no-underline"
@@ -196,7 +140,9 @@ const Header = () => {
                                     )
                                   )}
                                 </ul>
-                              )}
+                              )
+                              
+                              }
                             </li>
                           ))}
                         </ul>

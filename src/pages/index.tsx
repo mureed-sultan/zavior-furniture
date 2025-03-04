@@ -5,10 +5,10 @@ import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import '../styles/pages/home.css'
 import Image from "next/image";
 import { Navigation } from "swiper/modules";
 import { motion } from "framer-motion";
+import { getStyle } from "@/utils/loadCss";
 
 const clientImages = [
   "/assets/imgs/brand/img-s-1-light.webp",
@@ -145,6 +145,11 @@ const Home = () => {
       swiperInstance.navigation.update();
     }
   }, [swiperInstance]);
+
+      useEffect(() => {
+        const cleanup = getStyle("home");
+        return cleanup;
+      }, []);
   return (
     <Layout>
       <main className="body-wrapper body-web-agency font-heading-teko-bold">
@@ -1710,14 +1715,14 @@ const Home = () => {
                     <span className="section-subtitle has_fade_anim">
                       🖐️ Hello
                       <Image
-                        width={100}
+                        width={20}
                         height={100}
                         className="show-light"
                         src="/assets/imgs/shape/img-s-6.webp"
                         alt="image"
                       />
                       <Image
-                        width={100}
+                        width={20}
                         height={100}
                         className="show-dark"
                         src="/assets/imgs/shape/img-s-6-light.webp"

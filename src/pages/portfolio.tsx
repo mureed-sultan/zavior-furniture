@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "@/components/Layout";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,8 +9,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-coverflow";
-import "../styles/pages/portfolio.css";
-
+import { getStyle } from "@/utils/loadCss";
 const images = [
   "img-s-12.webp",
   "img-s-13.webp",
@@ -20,6 +19,10 @@ const images = [
 ];
 
 const Portfolio: React.FC = () => {
+  useEffect(() => {
+    const cleanup = getStyle("portfolio");
+    return cleanup;
+  }, []);
   return (
     <Layout>
       <div id="smooth-wrapper">
@@ -62,7 +65,11 @@ const Portfolio: React.FC = () => {
                         className="swiper swiper-material portfolio-active"
                       >
                         {images.map((image, index) => (
-                          <SwiperSlide key={index} className="swiper-slide has_fade_anim" data-fade-from="left">
+                          <SwiperSlide
+                            key={index}
+                            className="swiper-slide has_fade_anim"
+                            data-fade-from="left"
+                          >
                             <div className="swiper-material-wrapper">
                               <div className="swiper-material-content">
                                 <Image

@@ -35,9 +35,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             if (overlay ) {
               const computedStyles = window.getComputedStyle(overlay);
               
-              console.log((overlay as HTMLElement).style.zIndex="0"  )
-
-              // overlay.parentNode?.removeChild(overlay);
+              (overlay as HTMLElement).style.zIndex="0";
+              (overlay as HTMLElement).style.position="static";
             }
           }, 50); 
         },
